@@ -1,4 +1,5 @@
-﻿const RECIPIENT = 'suhan@visionaryone.co.kr';
+const RECIPIENT = 'suhan@visionaryone.co.kr';
+const SPREADSHEET_ID = '1pCQsIRnItOs8MNmLYlakUpT0RECGWyAzoJLfZMR5ZlA';
 const SHEET_NAME = '문의';
 
 function doGet() {
@@ -10,7 +11,7 @@ function doGet() {
 function doPost(e) {
   try {
     const data = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
     let sheet = spreadsheet.getSheetByName(SHEET_NAME);
 
     if (!sheet) {
