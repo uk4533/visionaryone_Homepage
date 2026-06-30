@@ -33,7 +33,7 @@ const inquiryForm = document.querySelector('#inquiry-form');
 const inquiryStatus = document.querySelector('#inquiry-status');
 const openInquiryButtons = document.querySelectorAll('.js-open-inquiry');
 const closeInquiryButtons = document.querySelectorAll('[data-close-inquiry]');
-const inquiryEndpoint = 'https://script.google.com/macros/s/YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID/exec';
+const inquiryEndpoint = 'https://script.google.com/macros/s/AKfycbwad1kBtqraZSeKyuTeRDCglOHSgUeG--n_xbKgttdfoZUzn4RR-K2ZZHKo2JnFB67WKQ/exec';
 
 const openInquiryModal = () => {
   inquiryModal.classList.add('open');
