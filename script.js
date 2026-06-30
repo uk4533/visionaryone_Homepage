@@ -1,10 +1,10 @@
-﻿const menuButton = document.querySelector('.menu-toggle');
+const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
 
 menuButton.addEventListener('click', () => {
   const isOpen = nav.classList.toggle('open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? '硫붾돱 ?リ린' : '硫붾돱 ?닿린');
+  menuButton.setAttribute('aria-label', isOpen ? '메뉴 닫기' : '메뉴 열기');
 });
 
 nav.querySelectorAll('a').forEach((link) => {
@@ -81,7 +81,7 @@ inquiryForm.addEventListener('submit', (event) => {
   const department = formData.get('department').trim();
   const name = formData.get('name').trim();
   const phone = formData.get('phone').trim();
-  const email = formData.get('email').trim() || '誘멸린??;
+  const email = formData.get('email').trim() || '미기재';
   const message = formData.get('message').trim();
   const submitButton = inquiryForm.querySelector('button[type="submit"]');
 
@@ -97,15 +97,15 @@ inquiryForm.addEventListener('submit', (event) => {
   };
 
   submitButton.disabled = true;
-  submitButton.innerHTML = '?묒닔 以?.. <span>??/span>';
+  submitButton.innerHTML = '접수 중... <span>↗</span>';
   inquiryStatus.textContent = '';
   inquiryStatus.className = 'form-status';
 
   if (inquiryEndpoint.includes('YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_ID')) {
-    inquiryStatus.textContent = '臾몄쓽 ?묒닔 ?쒕쾭 URL???꾩쭅 ?ㅼ젙?섏? ?딆븯?듬땲?? GitHub 諛고룷 ???묒닔 ?쒕쾭 URL???곌껐?댁＜?몄슂.';
+    inquiryStatus.textContent = '문의 접수 서버 URL이 아직 설정되지 않았습니다. GitHub 배포 전 접수 서버 URL을 연결해주세요.';
     inquiryStatus.classList.add('error');
     submitButton.disabled = false;
-    submitButton.innerHTML = '臾몄쓽?섍린 <span>??/span>';
+    submitButton.innerHTML = '문의하기 <span>↗</span>';
     return;
   }
 
@@ -117,16 +117,15 @@ inquiryForm.addEventListener('submit', (event) => {
   })
     .then(() => {
       inquiryForm.reset();
-      inquiryStatus.textContent = '臾몄쓽媛 ?묒닔?섏뿀?듬땲?? ?대떦?먭? ?뺤씤 ???곕씫?쒕━寃좎뒿?덈떎.';
+      inquiryStatus.textContent = '문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.';
       inquiryStatus.classList.add('success');
     })
     .catch(() => {
-      inquiryStatus.textContent = '臾몄쓽 ?묒닔 以?臾몄젣媛 諛쒖깮?덉뒿?덈떎. ?좎떆 ???ㅼ떆 ?쒕룄?댁＜?몄슂.';
+      inquiryStatus.textContent = '문의 접수 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.';
       inquiryStatus.classList.add('error');
     })
     .finally(() => {
       submitButton.disabled = false;
-      submitButton.innerHTML = '臾몄쓽?섍린 <span>??/span>';
+      submitButton.innerHTML = '문의하기 <span>↗</span>';
     });
 });
-
